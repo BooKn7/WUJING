@@ -4,10 +4,30 @@ import { useState } from "react";
 
 export default function Projects() {
     const [expandedId, setExpandedId] = useState<string | null>(null);
+    const [unlockedProjects, setUnlockedProjects] = useState<Set<string>>(new Set());
+
+    const closeModal = () => {
+        if (expandedId && !unlockedProjects.has(expandedId)) {
+            setUnlockedProjects(prev => {
+                const newSet = new Set(prev);
+                newSet.add(expandedId);
+                return newSet;
+            });
+            let staticLevel = 1;
+            if (expandedId === 'prototype') staticLevel = 3;
+            else if (expandedId === 'video') staticLevel = 2;
+            else if (expandedId === 'creator') staticLevel = 1;
+
+            window.dispatchEvent(new CustomEvent('unlock-black-hole', {
+                detail: { targetId: `project-card-${expandedId}`, level: staticLevel }
+            }));
+        }
+        setExpandedId(null);
+    };
 
     const toggleExpand = (id: string) => {
         if (expandedId === id) {
-            setExpandedId(null);
+            closeModal();
         } else {
             setExpandedId(id);
         }
@@ -208,6 +228,7 @@ export default function Projects() {
                 {projects.map((proj) => (
                     <div
                         key={proj.id}
+                        id={`project-card-${proj.id}`}
                         className="group relative bg-brand-bg-dark border border-brand-primary/30 hover:border-brand-primary transition-all duration-300 shadow-[0_4px_20px_rgba(5,8,22,1)] hover:shadow-[0_0_15px_rgba(79,209,255,0.1)] flex flex-col h-full"
                     >
                         {/* Top right decorative corner */}
@@ -287,7 +308,7 @@ export default function Projects() {
                     {/* Click away area */}
                     <div
                         className="absolute inset-0 cursor-pointer"
-                        onClick={() => setExpandedId(null)}
+                        onClick={closeModal}
                     ></div>
 
                     {/* Modal Content Box: increased max width to 6xl for larger images */}
@@ -302,7 +323,7 @@ export default function Projects() {
                                 {projects.find(p => p.id === expandedId)?.title}
                             </h3>
                             <button
-                                onClick={() => setExpandedId(null)}
+                                onClick={closeModal}
                                 className="inline-flex items-center justify-center px-4 py-2 border border-brand-primary/50 text-brand-primary hover:bg-brand-primary hover:text-brand-bg-dark font-pixel text-[10px] md:text-xs transition-all tracking-widest uppercase shadow-[0_0_10px_rgba(79,209,255,0.05)] hover:shadow-[0_0_15px_rgba(79,209,255,0.4)]"
                                 aria-label="Close modal"
                             >

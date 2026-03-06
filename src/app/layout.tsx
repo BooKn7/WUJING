@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Inter, Pixelify_Sans } from "next/font/google";
 import NavBar from "@/components/NavBar";
 import IntroAnimation from "@/components/IntroAnimation";
+import StarFX from "@/components/StarFX";
+import ScrollToTop from "@/components/ScrollToTop";
 import "./globals.css";
 
 const inter = Inter({
@@ -28,9 +30,11 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth">
       <body
-        className={`${inter.variable} ${pixelify.variable} antialiased`}
+        className={`${inter.variable} ${pixelify.variable} antialiased relative w-full min-h-screen`}
       >
+        <ScrollToTop />
         <IntroAnimation />
+        <StarFX />
         <div className="star-bg"></div>
         <NavBar />
         <main className="w-full">

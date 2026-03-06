@@ -37,12 +37,12 @@ export default function Hero() {
                     >
                         Explore My Work
                     </a>
-                    <Link
-                        href="#contact"
+                    <a
+                        href="#about"
                         className="w-full sm:w-auto relative px-8 py-3 bg-brand-bg-dark border border-brand-secondary text-brand-secondary font-pixel text-sm hover:bg-brand-secondary hover:text-brand-bg-dark transition-all duration-300 flex items-center justify-center uppercase tracking-widest shadow-[0_0_15px_rgba(124,108,255,0.1)] hover:shadow-[0_0_20px_rgba(124,108,255,0.5),inset_0_0_10px_rgba(124,108,255,0.3)]"
                     >
                         Contact
-                    </Link>
+                    </a>
                 </div>
             </div>
 

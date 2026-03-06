@@ -34,8 +34,8 @@ export default function FeaturedProject() {
                             プレイヤーは星をモチーフにしたキャラクターを操作し、<br />
                             引力と反発の力を利用してステージを攻略します。<br />
                             <br />
-                            プレイヤー同士の協力によって新しい移動方法が生まれる<br />
-                            ゲーム体験を目指して設計しました。
+                            プレイヤー同士の協力によって新しい移動方法が<br />
+                            生まれるゲーム体験を目指して設計しました。
                         </p>
 
                         <div className="mb-8 grid grid-cols-2 gap-4 font-sans bg-brand-primary/5 p-4 border border-brand-primary/10">
