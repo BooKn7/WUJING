@@ -1,0 +1,86 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand-primary: #4FD1FF;
+  --color-brand-secondary: #7C6CFF;
+  --color-brand-accent: #FF9B54;
+  --color-brand-text: #E6F1FF;
+  --color-brand-muted: #A3B8D8;
+  --color-brand-bg-dark: #050816;
+  --color-brand-bg-light: #0B0F2A;
+
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-pixel: var(--font-pixelify), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+@layer base {
+  body {
+    @apply bg-gradient-to-br from-brand-bg-dark to-brand-bg-light text-brand-text font-sans min-h-screen relative overflow-x-hidden;
+    background-attachment: fixed;
+  }
+
+  section {
+    @apply scroll-mt-24;
+    /* Prevents fixed navbar overlapping */
+  }
+
+  /* Custom Cyberpunk Scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: var(--color-brand-bg-dark);
+    border-left: 1px solid rgba(79, 209, 255, 0.1);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: rgba(79, 209, 255, 0.3);
+    border-radius: 0px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(79, 209, 255, 0.6);
+  }
+}
+
+@layer components {
+  .star-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: -1;
+    background-image:
+      radial-gradient(2px 2px at 20px 30px, #ffffff, rgba(0, 0, 0, 0)),
+      radial-gradient(2px 2px at 40px 70px, rgba(255, 255, 255, 0.8), rgba(0, 0, 0, 0)),
+      radial-gradient(2px 2px at 50px 160px, rgba(255, 255, 255, 0.7), rgba(0, 0, 0, 0)),
+      radial-gradient(2px 2px at 90px 40px, rgba(255, 255, 255, 0.9), rgba(0, 0, 0, 0)),
+      radial-gradient(2px 2px at 130px 80px, #ffffff, rgba(0, 0, 0, 0)),
+      radial-gradient(2px 2px at 160px 120px, rgba(255, 255, 255, 0.6), rgba(0, 0, 0, 0));
+    background-repeat: repeat;
+    background-size: 200px 200px;
+    animation: stars 100s linear infinite;
+    opacity: 0.3;
+  }
+
+  @keyframes stars {
+    0% {
+      transform: translateY(0);
+    }
+
+    100% {
+      transform: translateY(-200px);
+    }
+  }
+
+  .pixel-border {
+    border: 2px solid var(--color-brand-primary);
+    box-shadow:
+      0 0 10px rgba(79, 209, 255, 0.2),
+      inset 0 0 10px rgba(79, 209, 255, 0.1);
+  }
+}
