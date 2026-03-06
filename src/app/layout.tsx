@@ -18,7 +18,7 @@ const pixelify = Pixelify_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Portfolio | Deep Space Minimalist",
+  title: "WU JING | Portfolio",
   description: "Personal portfolio website with deep space minimalist design",
 };
 
