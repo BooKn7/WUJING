@@ -42,7 +42,6 @@ export default function HeroSection() {
                 </div>
             </div>
 
-            {/* Subtle glow behind hero */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-brand-primary/10 rounded-full blur-[150px] -z-10 animate-pulse"></div>
         </section>
     );

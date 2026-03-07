@@ -5,7 +5,7 @@ export default function About() {
         <section id="about" className="py-24 w-full max-w-[1100px] mx-auto px-4 sm:px-6 lg:px-8 relative">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24">
 
-                {/* Left Column: About Me */}
+                {/* 左侧：个人简介 */}
                 <div className="flex flex-col items-start w-full">
                     <h2 className="text-2xl md:text-3xl font-pixel text-brand-primary tracking-wider uppercase mb-12">
                         About Me
@@ -41,7 +41,7 @@ export default function About() {
                     </div>
                 </div>
 
-                {/* Right Column: Get In Touch */}
+                {/* 右侧：联系方式 */}
                 <div className="flex flex-col items-start w-full">
                     <h2 className="text-2xl md:text-3xl font-pixel text-brand-primary tracking-wider uppercase mb-12">
                         Get In Touch

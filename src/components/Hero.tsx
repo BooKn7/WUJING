@@ -5,12 +5,12 @@ export default function Hero() {
         <section id="home" className="flex flex-col items-center justify-center min-h-screen py-20 px-4">
             <div className="text-center w-full max-w-4xl relative z-10 flex flex-col items-center">
 
-                {/* Top Label */}
+                {/* 顶部标签 */}
                 <div className="inline-block px-4 py-1.5 border border-brand-primary/40 bg-brand-bg-dark/60 mb-8 font-pixel text-brand-primary text-xs tracking-[0.2em] uppercase shadow-[0_0_10px_rgba(79,209,255,0.15)]">
                     Game Developer · Content Creator
                 </div>
 
-                {/* Name Block */}
+                {/* 名字区域 */}
                 <div className="mb-12 flex flex-col items-center select-none relative">
                     <span className="text-brand-muted/60 text-sm tracking-[0.4em] mb-1 font-medium">ブケイ</span>
 
@@ -23,13 +23,13 @@ export default function Hero() {
                     </span>
                 </div>
 
-                {/* Slogan (Readable standard font) */}
+                {/* 宣传语 */}
                 <p className="text-xl md:text-2xl text-brand-text max-w-2xl mx-auto leading-relaxed font-sans mb-16 drop-shadow-md text-center">
                     人が楽しんでいる瞬間を生み出すことが、<br />
                     何より好きです。
                 </p>
 
-                {/* Action Buttons */}
+                {/* 按钮组 */}
                 <div className="flex flex-col sm:flex-row items-center justify-center gap-6 w-full max-w-md mx-auto">
                     <a
                         href="#featured-project"
@@ -46,7 +46,7 @@ export default function Hero() {
                 </div>
             </div>
 
-            {/* Background soft glow - extremely subtle */}
+            {/* 背景的微量光效 */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-brand-primary/5 rounded-full blur-[120px] pointer-events-none -z-10"></div>
         </section>
     );

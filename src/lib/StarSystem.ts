@@ -16,7 +16,7 @@ class ClickZone {
         this.container = document.createElement('div');
         this.container.className = 'ourstars-click-zone-container';
 
-        // Instructions
+        // 操作说明
         const instructions = document.createElement('div');
         instructions.className = 'ourstars-instructions';
         instructions.innerHTML = `
@@ -41,7 +41,7 @@ class ClickZone {
             </div>
         `;
 
-        // Click Button
+        // 点击区域
         this.button = document.createElement('div');
         this.button.className = 'ourstars-click-zone';
 
@@ -49,7 +49,7 @@ class ClickZone {
         this.container.appendChild(instructions);
         layer.appendChild(this.container);
 
-        // Prevent text selection
+        // 禁用默认选中文本
         this.button.addEventListener('pointerdown', (e) => {
             e.preventDefault();
             this.onInteract();
@@ -64,7 +64,7 @@ class ClickZone {
     private onInteract() {
         this.clicks++;
 
-        // Floating click text
+        // 点击时飘字特效
         const pt = document.createElement('div');
         pt.innerText = '+' + this.clicks;
         pt.style.position = 'absolute';
@@ -80,7 +80,7 @@ class ClickZone {
         pt.style.textShadow = '0 0 5px rgba(255,200,100,0.8)';
         this.button.appendChild(pt);
 
-        // Ripple effect
+        // 波纹特效
         const ripple = document.createElement('div');
         ripple.className = 'ourstars-ripple';
         this.button.appendChild(ripple);
@@ -94,7 +94,7 @@ class ClickZone {
         setTimeout(() => ripple.remove(), 600);
 
         if (this.clicks % 10 === 0) {
-            // Do the same, maybe just an extra ripple, but ONLY ONE STAR ALWAYS
+            // 凑够10次给个特殊反馈，但星星还是只生成一颗
             const rect = this.button.getBoundingClientRect();
             const spawnX = rect.left + window.scrollX + rect.width / 2;
             const spawnY = rect.top + window.scrollY + rect.height / 2;
@@ -108,7 +108,7 @@ class ClickZone {
     }
 
     private explodeStars() {
-        // ALWAYS just spawn 1 star on click, no multiple explosions
+        // 每次点击固定生成一颗星
         const count = 1;
         const rect = this.button.getBoundingClientRect();
         const spawnX = rect.left + window.scrollX + rect.width / 2;
@@ -129,7 +129,7 @@ class ClickZone {
                 hintEl.style.opacity = '0';
                 mainEl.style.opacity = '1';
 
-                // If instructions close, flash hint on newest black hole
+                // 提示关闭后，在最新的黑洞上闪烁一下引导玩家
                 const latestHole = this.manager.blackHoles[this.manager.blackHoles.length - 1];
                 if (latestHole) {
                     latestHole.flashHint();
@@ -247,7 +247,7 @@ class SmallStar {
         this.y = y;
         this.level = level;
 
-        // Shoot strictly to the left if speedMult > 0
+        // 控制初始发射方向和力度
         if (speedMult > 0) {
             const angle = Math.PI + (Math.random() - 0.5) * 0.4;
             const minForce = 5;
@@ -256,7 +256,7 @@ class SmallStar {
             this.vx = Math.cos(angle) * force * speedMult;
             this.vy = Math.sin(angle) * force * speedMult;
         } else {
-            // Perfect standstill (e.g. from merging)
+            // 特殊情况（合成后）保持静止
             this.vx = 0;
             this.vy = 0;
         }
@@ -264,7 +264,7 @@ class SmallStar {
         this.el = document.createElement('div');
         this.el.className = 'ourstars-small-star level-' + level;
 
-        // Create inner visuals based on level (Levels 1 to 3)
+        // 根据等级生成对应的星星样式
         if (level === 3) {
             const ring1 = document.createElement('div');
             ring1.className = 'star-ring-large';
@@ -315,7 +315,7 @@ class SmallStar {
         this.x = this.initialX + dx;
         this.y = this.initialY + dy;
 
-        // Zero out velocity when dragged to prevent flying off when released
+        // 拖拽时将速度归零，防止松手时飞出去
         this.vx = 0;
         this.vy = 0;
 
@@ -324,11 +324,11 @@ class SmallStar {
             const dist = Math.hypot(this.x - bh.x, this.y - bh.y);
             if (dist < 40) {
                 if (this.level !== bh.level) {
-                    // Repel dynamically during drag if wrong level
+                    // 如果等级不匹配，拖拽时产生排斥力
                     this.x += (this.x - bh.x) * 0.05;
                     this.y += (this.y - bh.y) * 0.05;
                 }
-                // We do NOT absorb on touch during drag anymore. Let the user drop it in onPointerUp.
+                // 拖拽过程中不直接吸收，等玩家松手再判断
             }
         }
 
@@ -344,7 +344,7 @@ class SmallStar {
         window.removeEventListener('pointerup', this.pointerUpHandler);
         window.removeEventListener('pointercancel', this.pointerUpHandler);
 
-        // Check if dropped into black hole correctly
+        // 检查是否恰好拖进了黑洞里
         for (const bh of this.manager.blackHoles) {
             if (bh.isFilled) continue;
             const dist = Math.hypot(this.x - bh.x, this.y - bh.y);
@@ -373,18 +373,18 @@ class SmallStar {
     public update() {
         if (this.isDragging || this.isEmbedded) return;
 
-        // Apply slight gravity/float if moving slowly
+        // 增加一点微弱的重力和漂浮感
         this.vy += (Math.random() - 0.49) * 0.002;
         this.vx += (Math.random() - 0.5) * 0.002;
 
-        // Dynamic friction and speed clamping
+        // 动态摩擦力和平滑限速
         const currentSpeed = Math.hypot(this.vx, this.vy);
         if (currentSpeed > 0.15) {
-            // Apply brutal air friction rapidly to high-velocity stars
+            // 速度太快时施加较强的空气阻力
             this.vx *= 0.75;
             this.vy *= 0.75;
         } else {
-            // Normal float max speed (extremely slow, basically static float)
+            // 正常漂浮时的最高速度限制
             this.vx = Math.max(-0.1, Math.min(0.1, this.vx));
             this.vy = Math.max(-0.1, Math.min(0.1, this.vy));
         }
@@ -392,7 +392,7 @@ class SmallStar {
         let nextX = this.x + this.vx;
         let nextY = this.y + this.vy;
 
-        // Strict Screen bounds bounce (accounting for full document bounds)
+        // 严格的屏幕边缘反弹检测
         const maxX = document.documentElement.scrollWidth - 40;
         const maxY = document.documentElement.scrollHeight - 40;
 
@@ -412,8 +412,8 @@ class SmallStar {
             nextY = maxY;
         }
 
-        // Solid collision checks
-        const size = 10; // rough hit box
+        // 碰撞检测，防止穿模
+        const size = 10; // 粗略的碰撞体积
         for (const rect of this.manager.solidRects) {
             if (
                 nextX + size > rect.left &&
@@ -421,8 +421,8 @@ class SmallStar {
                 nextY + size > rect.top &&
                 nextY - size < rect.bottom
             ) {
-                // Simple AABB collision response
-                // determine side of collision
+                // 简单的AABB碰撞反馈
+                // 判断是从哪一面撞上的
                 const overlapL = (nextX + size) - rect.left;
                 const overlapR = rect.right - (nextX - size);
                 const overlapT = (nextY + size) - rect.top;
@@ -431,12 +431,12 @@ class SmallStar {
                 const minOverlap = Math.min(overlapL, overlapR, overlapT, overlapB);
 
                 if (minOverlap === overlapL || minOverlap === overlapR) {
-                    this.vx *= -0.6; // bounce and damp
+                    this.vx *= -0.6; // 反弹并衰减速度
                 } else {
                     this.vy *= -0.6;
                 }
 
-                // Push out slightly
+                // 稍微挤出碰撞体
                 nextX = this.x;
                 nextY = this.y;
             }
@@ -556,7 +556,7 @@ export class StarFXManager {
 
         this.updateSolidRects();
 
-        // Small stars loop
+        // 小星星的逻辑更新
         for (let i = this.smallStars.length - 1; i >= 0; i--) {
             const s = this.smallStars[i];
             s.update();
@@ -565,7 +565,7 @@ export class StarFXManager {
             }
         }
 
-        // Update Black Holes position dynamically
+        // 动态更新黑洞的位置（适配页面滚动或缩放）
         this.blackHoles.forEach(bh => bh.updatePosition());
 
         this.rafId = requestAnimationFrame(this.loop);
@@ -573,7 +573,7 @@ export class StarFXManager {
 
     private updateSolidRects() {
         const now = Date.now();
-        if (now - this.lastRectUpdate < 500) return; // throttle DOM reads to 2fps
+        if (now - this.lastRectUpdate < 500) return; // 限制 DOM 读取频率，优化性能
         this.lastRectUpdate = now;
 
         const solids = Array.from(document.querySelectorAll('.project-card, .card, .panel, .button, button, .framed, .outline-box, img, iframe'));
@@ -588,7 +588,7 @@ export class StarFXManager {
                 this.smallStars.shift();
             }
 
-            // Constrain spawning heavily to the bottom 25% height of the page, even if triggered high up
+            // 限制星星只能在页面靠下方的区域生成
             const documentHeight = document.documentElement.scrollHeight;
             const minY = documentHeight * 0.75;
             const spawnY = Math.max(y, minY);
@@ -625,7 +625,7 @@ export class StarFXManager {
                                 s2.destroy();
                                 s3.destroy();
 
-                                // Spawn new higher level merged star with 0 velocity so it doesn't fly out
+                                // 合并出更高阶的星星，初始速度设为0防止乱飞
                                 this.spawnSmallStars(cx, cy, 1, lvl + 1, 0);
 
                                 const flash = document.createElement('div');
@@ -655,7 +655,7 @@ export class StarFXManager {
             msg.innerHTML = '<div class="jp">ご覧いただき、ありがとうございました！</div><div class="en">Thank you for viewing my portfolio！</div>';
             document.body.appendChild(msg);
 
-            // Gentle Fade-in sequence
+            // 缓慢淡入完成提示
             setTimeout(() => {
                 overlay.style.opacity = '1';
                 msg.style.opacity = '1';
@@ -666,7 +666,7 @@ export class StarFXManager {
                         overlay.remove();
                         msg.remove();
                     }, 2000);
-                }, 4000); // 4 seconds of reading time
+                }, 4000); // 留给玩家4秒阅读时间
             }, 100);
         }
     }

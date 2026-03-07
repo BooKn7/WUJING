@@ -9,7 +9,6 @@ export default function AboutSection() {
             </div>
 
             <div className="bg-brand-bg-dark/50 border-l border-brand-secondary p-8 md:p-12 relative overflow-hidden">
-                {/* Pixel Corner Decorations */}
                 <div className="absolute top-0 left-0 w-2 h-2 bg-brand-secondary"></div>
                 <div className="absolute bottom-0 left-0 w-2 h-2 bg-brand-secondary"></div>
 

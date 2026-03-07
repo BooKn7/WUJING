@@ -44,7 +44,7 @@ export default function Projects() {
             details: (
                 <div className="flex flex-col animate-in fade-in zoom-in-95 duration-300">
                     <div className="flex flex-col lg:flex-row gap-8 mb-8">
-                        {/* 1. Intro Text & Role */}
+                        {/* 1. 介绍与项目角色 */}
                         <div className="w-full lg:w-[45%] flex flex-col">
                             <h4 className="text-sm font-bold font-sans text-brand-text mb-3 border-l-2 border-brand-primary pl-2">Core Gameplay</h4>
 
@@ -74,7 +74,7 @@ export default function Projects() {
                             </div>
                         </div>
 
-                        {/* 2. PDF Presentation Link/Preview */}
+                        {/* 2. 企划书PDF */}
                         <div className="w-full lg:w-[55%]">
                             <a href="/KABETRIS.pdf" target="_blank" rel="noopener noreferrer" className="block w-full aspect-[4/3] bg-black border border-brand-primary/30 relative group overflow-hidden cursor-pointer hover:border-brand-primary transition-colors shadow-[0_0_15px_rgba(0,0,0,0.5)]">
                                 <div className="absolute inset-0 z-20" title="Click to open full document"></div>
@@ -89,7 +89,7 @@ export default function Projects() {
                         </div>
                     </div>
 
-                    {/* 3. YouTube Video */}
+                    {/* 3. 演示视频 */}
                     <h4 className="text-sm font-bold font-sans text-brand-text mb-3 border-l-2 border-brand-primary pl-2 mt-2">Demonstration</h4>
                     <div className="aspect-video bg-black border border-brand-primary/30 mb-2 flex flex-col items-center justify-center relative group overflow-hidden shadow-[0_0_20px_rgba(0,0,0,0.5)]">
                         <iframe
@@ -231,12 +231,12 @@ export default function Projects() {
                         id={`project-card-${proj.id}`}
                         className="group relative bg-brand-bg-dark border border-brand-primary/30 hover:border-brand-primary transition-all duration-300 shadow-[0_4px_20px_rgba(5,8,22,1)] hover:shadow-[0_0_15px_rgba(79,209,255,0.1)] flex flex-col h-full"
                     >
-                        {/* Top right decorative corner */}
+                        {/* 卡片右上角装饰 */}
                         <div className="absolute top-0 right-0 w-4 h-4 border-t-2 border-r-2 border-brand-primary opacity-0 group-hover:opacity-100 transition-opacity"></div>
                         <div className="absolute bottom-0 left-0 w-4 h-4 border-b-2 border-l-2 border-brand-primary opacity-0 group-hover:opacity-100 transition-opacity"></div>
 
                         <div className="p-8 flex flex-col flex-grow">
-                            {/* Thumbnail Placeholder */}
+                            {/* 占位缩略图 */}
                             <div className="aspect-video bg-black border border-brand-primary/20 flex flex-col items-center justify-center mb-6 overflow-hidden relative group-hover:border-brand-primary/40 transition-colors pointer-events-none">
                                 {/* @ts-ignore dynamic mapping support */}
                                 {proj.thumbnail ? (
@@ -302,22 +302,22 @@ export default function Projects() {
                 ))}
             </div>
 
-            {/* Modal Overlay Component */}
+            {/* 详情弹窗 */}
             {expandedId && (
                 <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6 md:p-12 bg-black/80 backdrop-blur-sm animate-in fade-in duration-300">
-                    {/* Click away area */}
+                    {/* 点击背景关闭 */}
                     <div
                         className="absolute inset-0 cursor-pointer"
                         onClick={closeModal}
                     ></div>
 
-                    {/* Modal Content Box: increased max width to 6xl for larger images */}
+                    {/* 弹窗主体（加宽以适应大图显示） */}
                     <div className="relative w-full max-w-6xl max-h-[90vh] bg-brand-bg-dark border-2 border-brand-primary shadow-[0_0_50px_rgba(79,209,255,0.3)] flex flex-col pointer-events-auto">
-                        {/* Decorative borders fixed to the outer boundary */}
+                        {/* 外边框的装饰角 */}
                         <div className="hidden md:block absolute top-0 right-0 w-16 h-16 border-t-4 border-r-4 border-brand-primary pointer-events-none z-30"></div>
                         <div className="hidden md:block absolute bottom-0 left-0 w-16 h-16 border-b-4 border-l-4 border-brand-primary pointer-events-none z-30"></div>
 
-                        {/* Header (does not need sticky anymore because outer box doesn't scroll) */}
+                        {/* 弹窗头部 */}
                         <div className="flex-shrink-0 z-20 flex justify-between items-center p-6 md:p-8 border-b border-brand-primary/30 bg-brand-bg-dark">
                             <h3 className="text-xl md:text-2xl font-bold font-pixel text-brand-text tracking-wider uppercase drop-shadow-[0_0_8px_rgba(230,241,255,0.3)]">
                                 {projects.find(p => p.id === expandedId)?.title}
@@ -331,9 +331,9 @@ export default function Projects() {
                             </button>
                         </div>
 
-                        {/* Body - Independently scrolling container */}
+                        {/* 弹窗内容区（独立滚动） */}
                         <div className="flex-grow p-6 md:p-10 flex flex-col relative overflow-y-auto">
-                            {/* Render the details logic securely */}
+                            {/* 渲染对应的详情组件 */}
                             <div className="text-brand-text flex-grow">
                                 {projects.find(p => p.id === expandedId)?.details}
                             </div>

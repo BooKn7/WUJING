@@ -9,7 +9,7 @@ export default function FeaturedProject() {
 
             <div className="bg-brand-bg-dark border border-brand-primary/50 shadow-[0_0_30px_rgba(79,209,255,0.05)] overflow-hidden group">
                 <div className="grid grid-cols-1 lg:grid-cols-12 w-full">
-                    {/* Project Visual / Video Player (7/12) */}
+                    {/* 左侧视图 / 视频播放 */}
                     <div id="demo-video" className="lg:col-span-7 relative border-b lg:border-b-0 lg:border-r border-brand-primary/30 bg-black flex items-center scroll-mt-24">
                         <div className="w-full aspect-video">
                             <iframe
@@ -22,7 +22,7 @@ export default function FeaturedProject() {
                         </div>
                     </div>
 
-                    {/* Project Info (5/12) */}
+                    {/* 右侧信息 */}
                     <div className="lg:col-span-5 p-8 lg:p-12 flex flex-col justify-center">
                         <h3 className="text-4xl lg:text-5xl font-bold font-pixel text-brand-text mb-8 tracking-wide drop-shadow-[0_2px_10px_rgba(230,241,255,0.2)]">
                             OurStars
