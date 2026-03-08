@@ -29,7 +29,6 @@ export default function CreatorSection() {
                         Visit Channel
                     </Link>
 
-                    {/* Decorative faint pixels */}
                     <div className="absolute bottom-4 right-4 text-brand-secondary/20 font-pixel text-xs">
             // DATA_STREAM_ACTIVE
                     </div>

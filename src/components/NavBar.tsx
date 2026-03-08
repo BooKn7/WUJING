@@ -32,7 +32,7 @@ export default function NavBar() {
                             ))}
                         </div>
                     </div>
-                    {/* Mobile menu simple flat display */}
+                    {/* 移动端菜单 */}
                     <div className="md:hidden flex space-x-4">
                         {navItems.map((item) => (
                             <a

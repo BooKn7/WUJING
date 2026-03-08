@@ -98,7 +98,6 @@ export default function ProjectsSection() {
                                 }`}
                         >
                             <div className="flex flex-col lg:flex-row border-b border-brand-primary/20">
-                                {/* Pixel Art Placeholder Head Image */}
                                 <div className={`lg:w-2/5 p-4 border-b lg:border-b-0 lg:border-r border-brand-primary/20 bg-brand-bg-light flex items-center justify-center relative overflow-hidden ${isMain ? "min-h-[250px]" : "min-h-[200px]"}`}>
                                     <div className="absolute inset-0 pattern-grid opacity-20"></div>
                                     {project.id === "ourstars" && (
@@ -125,7 +124,6 @@ export default function ProjectsSection() {
                                     )}
                                 </div>
 
-                                {/* Card Info */}
                                 <div className="lg:w-3/5 p-6 md:p-8 flex flex-col justify-between">
                                     <div>
                                         <div className="flex justify-between items-start mb-2">
@@ -176,7 +174,6 @@ export default function ProjectsSection() {
                                 </div>
                             </div>
 
-                            {/* Accordion Details */}
                             <div
                                 className={`overflow-hidden transition-all duration-300 ease-in-out ${isExpanded ? "max-h-[800px] border-t border-brand-primary/20 bg-brand-bg-dark/40" : "max-h-0"
                                     }`}

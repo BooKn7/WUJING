@@ -5,17 +5,17 @@ export default function Contact() {
     const links = [
         {
             name: "Email",
-            url: "mailto:hello@example.com", // Replace with real email
+            url: "mailto:hello@example.com",
             icon: <Mail className="w-5 h-5" />,
         },
         {
             name: "GitHub",
-            url: "https://github.com", // Replace with real URL
+            url: "https://github.com",
             icon: <Github className="w-5 h-5" />,
         },
         {
             name: "Portfolio",
-            url: "#home", // Back to top
+            url: "#home",
             icon: <Globe className="w-5 h-5" />,
         },
     ];

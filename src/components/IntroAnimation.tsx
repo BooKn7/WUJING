@@ -7,19 +7,19 @@ export default function IntroAnimation() {
     const [progress, setProgress] = useState(0);
 
     useEffect(() => {
-        // Reset state natively for React Hot Reloading
+        // 兼容开发环境的热加载
         setStage(0);
         setProgress(0);
 
-        // Stage 1: Boot
+        // 阶段1: 启动
         const t1 = setTimeout(() => setStage(1), 100);
-        // Stage 2: Loading starts
+        // 阶段2: 加载
         const t2 = setTimeout(() => setStage(2), 400);
-        // Stage 3: Awakening
+        // 阶段3: 唤醒
         const t3 = setTimeout(() => setStage(3), 1100);
-        // Stage 4: Split screen
+        // 阶段4: 屏幕展开
         const t4 = setTimeout(() => setStage(4), 1600);
-        // Stage 5: Unmount
+        // 阶段5: 卸载组件
         const t5 = setTimeout(() => setStage(5), 3000);
 
         return () => {
@@ -67,7 +67,7 @@ export default function IntroAnimation() {
 
     return (
         <div className={`fixed inset-0 z-[100] flex pointer-events-none ${isSplitting ? 'overflow-hidden' : ''}`}>
-            {/* Left Door */}
+            {/* 左侧门 */}
             <div
                 className={`absolute top-0 left-0 w-1/2 h-full bg-brand-bg-dark border-r border-brand-primary/50 shadow-[5px_0_20px_rgba(79,209,255,0.2)] transition-transform duration-[1200ms] ease-[cubic-bezier(0.76,0,0.24,1)] flex flex-col justify-center items-end ${isSplitting ? '-translate-x-full' : 'translate-x-0'
                     }`}
@@ -75,14 +75,14 @@ export default function IntroAnimation() {
                 <LoadingContent />
             </div>
 
-            {/* Right Door */}
+            {/* 右侧门 */}
             <div
                 className={`absolute top-0 right-0 w-1/2 h-full bg-brand-bg-dark border-l border-brand-primary/50 shadow-[-5px_0_20px_rgba(79,209,255,0.2)] transition-transform duration-[1200ms] ease-[cubic-bezier(0.76,0,0.24,1)] flex overflow-hidden ${isSplitting ? 'translate-x-full' : 'translate-x-0'
                     }`}
             >
             </div>
 
-            {/* Center Light Line */}
+            {/* 中间的特效光线 */}
             <div className={`absolute top-0 left-1/2 -translate-x-1/2 w-[2px] h-full bg-brand-primary shadow-[0_0_20px_rgba(79,209,255,1)] transition-all duration-300 ${isSplitting ? 'opacity-0 scale-y-0' : 'opacity-100 scale-y-100'
                 } ${stage >= 1 ? 'opacity-100' : 'opacity-0'}`}></div>
         </div>
