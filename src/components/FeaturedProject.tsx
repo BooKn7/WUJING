@@ -71,7 +71,7 @@ export default function FeaturedProject() {
                         <div className="flex flex-col mt-auto pb-4">
                             <div className="flex flex-col sm:flex-row items-start gap-4 lg:gap-5">
                                 <Link
-                                    href="/summary.pdf"
+                                    href="/OurStars _summary.pdf.pdf"
                                     target="_blank"
                                     className="flex-1 w-full flex items-center justify-center h-[54px] px-2 bg-brand-bg-dark border border-brand-primary text-brand-primary hover:bg-brand-primary hover:text-brand-bg-dark font-pixel text-sm lg:text-[15px] xl:text-base text-center transition-all shadow-[0_0_10px_rgba(79,209,255,0.1)] hover:shadow-[0_0_20px_rgba(79,209,255,0.8),inset_0_0_10px_rgba(79,209,255,0.5)] uppercase tracking-widest whitespace-nowrap"
                                 >
