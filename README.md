@@ -16,7 +16,7 @@
 ## サイトURL (Deploy)
 
 本プロジェクトは Vercel にてデプロイ済みです。以下のリンクから実際の動作をご確認いただけます。
-👉 **[https://bukei.space/](https://bukei.space/)**
+**[https://bukei.space/](https://bukei.space/)**
 
 ## 連絡先など
 何かありましたら、サイト内のコンタクトフォーム、または記載しているメールアドレスからお気軽にご連絡ください。
